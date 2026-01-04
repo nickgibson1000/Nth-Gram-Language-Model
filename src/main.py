@@ -11,8 +11,9 @@ def main() -> None:
     args = parser.parse_args()
 
     text = tk.tokenize(args.inputText)
-    list = tk.bigram(text)
-    tk.normalize(list)
+    plist = tk.bigram(text)
+    stuff = tk.normalize(plist)
+    tk.generate(stuff)
 
 
 
