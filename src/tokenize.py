@@ -8,6 +8,21 @@ def tokenize(text: str) -> list[str]:
     return text
 
 
+def parse_file(file_path: str) -> list[str]:
+
+    try:
+        with open(file_path, 'r') as file:
+            # Read the entire content of the file into the 'content' variable
+            content = file.read()
+
+        return tokenize(content)
+
+    except FileNotFoundError:
+        return f"Error: The file '{file_path}' was not found."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+
 def bigram(tokenized_text: list[str]) -> None:
     
     bigram_list = []
@@ -66,9 +81,11 @@ def generate(probability_sequences) -> None:
     word = "<s>"
     sentence = []
 
+    print("Model Output:")
+
     while word != "</s>":
         word = generate_next_word(word, probability_sequences)
-        print(word)
+        print(word, end=" ")
 
 
 
